@@ -5,12 +5,14 @@ import org.springframework.data.domain.Page;
 import br.com.victor.classmate.model.Coordenador;
 
 public class CoordenadorDto {
+	private Long id;
 	private String nome;
 	private String email;
 	private String senha;
 	private String telefone;
 	
 	public CoordenadorDto(Coordenador coordenador) {
+		this.id = coordenador.getId();
 		this.nome = coordenador.getNome();
 		this.email = coordenador.getPerfil().getEmail();
 		this.senha = coordenador.getPerfil().getSenha();
@@ -19,6 +21,10 @@ public class CoordenadorDto {
 	
 	public static Page<CoordenadorDto> converter(Page<Coordenador> coordenadores) {
 		return coordenadores.map(CoordenadorDto::new);
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
 	public String getNome() {

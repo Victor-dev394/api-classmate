@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import br.com.victor.classmate.model.Aluno;
 
 public class AlunoDto {
+	private Long id;
 	private String nome;
 	private String email;
 	private String senha;
@@ -12,6 +13,7 @@ public class AlunoDto {
 	private Long idCurso;
 	
 	public AlunoDto(Aluno aluno) {
+		this.id = aluno.getId();
 		this.nome = aluno.getNome();
 		this.email = aluno.getPerfil().getEmail();
 		this.senha = aluno.getPerfil().getSenha();
@@ -22,7 +24,11 @@ public class AlunoDto {
 	public static Page<AlunoDto> converter(Page<Aluno> alunos) {
 		return alunos.map(AlunoDto::new);
 	}
-
+	
+	public Long getId() {
+		return id;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
